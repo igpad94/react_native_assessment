@@ -7,9 +7,10 @@ const initialState = {
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
         case READ_QR:
-            return {...state,
-                qrData: [...qrData, action.payload]
-            }   
+            return {
+                ...state,
+                qrData: state.qrData.concat(action.payload)
+            }
         default:
             return state;        
     }
