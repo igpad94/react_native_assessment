@@ -1,17 +1,26 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, {useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
     Text,
     View,
     StyleSheet,
-    FlatList
+    FlatList,
+    SafeAreaView,
+    TextInput
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { filterData } from "../actions";
 
 
 export default function QrList () {
 
-const QrDataList = useSelector((state) => state.qrData)
+    const QrDataList = useSelector((state) => state.filteredData)
+    const [text, setText] = useState("")
+    const dispatch = useDispatch();
+
+    const onSubmit = () => {
+        dispatch(filterData(text))
+    }
+
 
     return (
         <SafeAreaView>
@@ -20,6 +29,14 @@ const QrDataList = useSelector((state) => state.qrData)
                     <Text>
                         Qr List
                     </Text>
+                </View>
+                <View>
+                    <TextInput
+                    onChangeText={setText}
+                    value={text}
+                    placeholder={"Search Qr..."}
+                    onSubmitEditing={onSubmit}
+                    />
                 </View>
                 <View>
                     <FlatList
@@ -37,6 +54,7 @@ const QrDataList = useSelector((state) => state.qrData)
 
 const styles = StyleSheet.create({
     container : {
+        paddingTop: 16,
         display: "flex",
         alignItems: "center",
         justifyContent: "center"

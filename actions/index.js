@@ -1,4 +1,4 @@
-import { READ_QR } from "./types";
+import { READ_QR, FILTER_DATA } from "./types";
 
 let qrId = 0
 
@@ -9,5 +9,11 @@ export function readQr(payload) {
             title: payload,
             id: qrId++
         }
+    }
+}
+export function filterData(payload) {
+    return {
+        type: FILTER_DATA,
+        payload
     }
 }

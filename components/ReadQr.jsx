@@ -4,9 +4,9 @@ import {
     View,
     StyleSheet,
     Button,
-    Dimensions
+    Dimensions,
+    SafeAreaView
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useDispatch } from "react-redux";
 import { readQr } from "../actions"
