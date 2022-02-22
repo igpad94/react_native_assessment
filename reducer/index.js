@@ -1,11 +1,15 @@
 import { READ_QR } from "../actions/types";
 
-const qrData = [];
+const initialState = {
+    qrData : []
+};
 
-export default function rootReducer(state = qrData, action) {
+export default function rootReducer(state = initialState, action) {
     switch (action.type) {
         case READ_QR:
-            return [...state, payload]    
+            return {...state,
+                qrData: [...qrData, action.payload]
+            }   
         default:
             return state;        
     }
