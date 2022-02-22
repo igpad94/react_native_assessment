@@ -1,0 +1,1 @@
+export const READ_QR = "READ_QR"
