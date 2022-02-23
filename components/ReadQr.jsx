@@ -22,6 +22,7 @@ export default function ReadQr () {
     const [scanned, setScanned] = useState(false);
     const [camera, setCamera] = useState(false);
 
+
     useEffect(() => {
         (async () => {
           const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -48,11 +49,11 @@ export default function ReadQr () {
       }
 
     return (
-        <SafeAreaView>
-            <View style={styles.container}>
+        <SafeAreaView  style={styles.container} >
+            <View>
                 <View>
-                    <Text>
-                        ReadQr
+                    <Text style={styles.title}>
+                        Read QR
                     </Text>
                 </View>
                 <View>
@@ -67,7 +68,7 @@ export default function ReadQr () {
                     </View>
                     ):(
                     <View>
-                        <Button title={"Start Scanning"} onPress={() => setCamera(true)}/>
+                        <Button title={"Tap to start Scanning"} onPress={() => setCamera(true)}/>
                     </View>
                     )}
                 </View>
@@ -78,12 +79,20 @@ export default function ReadQr () {
 
 const styles = StyleSheet.create({
     container : {
+        width: windowWidth,
+        height: windowHeight,
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "flex-start"
+    },
+    title :{
+        fontSize: 22,
+        fontFamily: "Optima",
+        alignSelf: "center",
+        marginBottom: 10
     },
     codeScanner: {
         width: windowWidth*0.55, 
-        height: windowHeight*0.30
+        height: windowHeight*0.30,
     },
 })

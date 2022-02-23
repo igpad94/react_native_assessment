@@ -21,10 +21,10 @@ export default function App() {
           component={ReadQr}
           options={{
           headerShown: false,
-          tabBarLabel: () => (
+          tabBarLabel: ({focused}) => (
             <View>
-              <Text>
-              Read Qr 
+             <Text style={{fontFamily: "Optima", color: focused ? "#00B4D8" : "grey"}}>
+              Read QR 
               </Text>
             </View>
           ),
@@ -37,10 +37,10 @@ export default function App() {
           component={QrList}
           options={{
             headerShown: false,
-            tabBarLabel: () => (
+            tabBarLabel: ({focused}) => (
               <View>
-                <Text>
-                Qr List 
+                <Text style={{fontFamily: "Optima", color: focused ? "#00B4D8" : "grey"}}>
+                QR List 
                 </Text>
               </View>
             ),
