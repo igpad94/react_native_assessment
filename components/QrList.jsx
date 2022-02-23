@@ -7,9 +7,10 @@ import {
     FlatList,
     SafeAreaView,
     TextInput,
-    Dimensions
+    Dimensions,
+    TouchableOpacity
 } from "react-native";
-import { filterData } from "../actions";
+import { clearFilter, filterData } from "../actions";
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -24,6 +25,11 @@ export default function QrList () {
         dispatch(filterData(text))
     }
 
+    const handleFilter = () => {
+        dispatch(clearFilter());
+        setText("")
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -33,7 +39,7 @@ export default function QrList () {
                         QR List
                     </Text>
                 </View>
-                <View>
+                <View style={styles.inputContainer}>
                     <TextInput
                     style={styles.input}
                     onChangeText={setText}
@@ -41,6 +47,12 @@ export default function QrList () {
                     placeholder={"Filter QR..."}
                     onSubmitEditing={onSubmit}
                     />
+                    <TouchableOpacity
+                    onPress={handleFilter}>
+                    <Text style={{color: "#00B4D8"}}>
+                        Clear filter
+                    </Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.listContainer}>
                     <FlatList
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderColor: "grey",
         marginBottom: 10,
-        alignSelf: "center"
+        alignSelf: "center",
       },
     itemText :{
         color: "white",
@@ -103,5 +115,11 @@ const styles = StyleSheet.create({
     },
     listContainer :{
        flex: 1
-    }
+    },
+    inputContainer : {
+        width: windowWidth*0.75,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
+        }
 })

@@ -24,7 +24,7 @@ export default function App() {
           tabBarLabel: ({focused}) => (
             <View>
              <Text style={{fontFamily: "Optima", color: focused ? "#00B4D8" : "grey"}}>
-              Read QR 
+              QR Reader 
               </Text>
             </View>
           ),

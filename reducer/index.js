@@ -1,4 +1,4 @@
-import { READ_QR, FILTER_DATA } from "../actions/types";
+import { READ_QR, FILTER_DATA, CLEAR_FILTER } from "../actions/types";
 
 const initialState = {
     qrData : [],
@@ -17,6 +17,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 filteredData: state.qrData.filter(e => e.title.toLowerCase().includes(action.payload.toLowerCase()))
+            }
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filteredData: state.qrData
             }
         default:
             return state;        
