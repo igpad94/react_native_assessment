@@ -1,4 +1,4 @@
-import { READ_QR, FILTER_DATA, CLEAR_FILTER } from "./types";
+import { READ_QR, FILTER_DATA, CLEAR_FILTER, DELETE_QR } from "./types";
 
 let qrId = 0
 
@@ -20,5 +20,11 @@ export function filterData(payload) {
 export function clearFilter() {
     return {
         type: CLEAR_FILTER,
+    }
+}
+export function deleteQR(payload) {
+    return {
+        type: DELETE_QR,
+        payload
     }
 }

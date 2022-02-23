@@ -51,12 +51,13 @@ export default function ReadQr () {
     return (
         <SafeAreaView  style={styles.container} >
             <View >
-                <View>
+                <View style={styles.titleContainer}>
                     <Text style={styles.title}>
                         QR Reader
                     </Text>
                 </View>
                 <View style={styles.subContainer}>
+                    
                     {camera ? (
                     <View>
                         <BarCodeScanner
@@ -67,7 +68,9 @@ export default function ReadQr () {
                         <Button title={"Close Scanner"} onPress={handleClose}/>
                     </View>
                     ):(
+                  
                     <View>
+                        <View style={styles.codeScanner}/>
                         <Button title={"Tap to start Scanning"} onPress={() => setCamera(true)}/>
                     </View>
                     )}
@@ -88,19 +91,30 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     title :{
-        fontSize: 22,
+        fontSize: 26,
         fontFamily: "Optima",
         alignSelf: "center",
         marginBottom: 10,
+        color: "white"
     },
     codeScanner: {
         width: windowWidth*0.55, 
         height: windowHeight*0.30,
         alignSelf: "center",
+        backgroundColor: "grey"
     },
     subContainer : {
         justifyContent: "center",
         height: windowHeight,
         paddingBottom: windowHeight*0.13
-    } 
+    },
+    titleContainer :{
+        paddingTop: 5,
+        alignSelf: "center",
+        width: windowWidth *0.4,
+        borderRadius: 12,
+        borderWidth: 1,
+        backgroundColor: "#00B4D8"
+        }
+    
 })

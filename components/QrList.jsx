@@ -10,7 +10,7 @@ import {
     Dimensions,
     TouchableOpacity
 } from "react-native";
-import { clearFilter, filterData } from "../actions";
+import { clearFilter, deleteQR, filterData } from "../actions";
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -34,7 +34,7 @@ export default function QrList () {
     return (
         <SafeAreaView style={styles.container}>
             <View >
-                <View>
+                <View style={styles.titleContainer}>
                     <Text style={styles.title}>
                         QR List
                     </Text>
@@ -49,7 +49,7 @@ export default function QrList () {
                     />
                     <TouchableOpacity
                     onPress={handleFilter}>
-                    <Text style={{color: "#00B4D8"}}>
+                    <Text style={{color: "#00B4D8", textDecorationLine: "underline"}}>
                         Clear filter
                     </Text>
                     </TouchableOpacity>
@@ -62,9 +62,14 @@ export default function QrList () {
                     showsVerticalScrollIndicator={false}
                     renderItem={({item}) => (
                         <View style={styles.itemContainer}>
-                        <Text style={styles.itemText}>
-                        {item.title.length > 45 ? `${item.title.slice(0,45)}(...)` : item.title}
-                        </Text>
+                            <Text style={styles.itemText}>
+                                {item.title.length > 45 ? `${item.title.slice(0,45)}(...)` : item.title}
+                            </Text>
+                            <TouchableOpacity onPress={() => dispatch(deleteQR(item.id))}>
+                                <Text style={{ color: "white", fontWeight: "bold", fontSize: 14}}>
+                                    X
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     )}
                     />
@@ -86,11 +91,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 22,
         fontFamily: "Optima",
-        alignSelf: "center"
+        alignSelf: "center",
+        color: "white"
     },
     input: {
         height: windowHeight*0.05,
-        width: windowWidth*0.5,
+        width: windowWidth*0.55,
         borderWidth: 1,
         borderRadius: 15,
         padding: 10,
@@ -101,17 +107,20 @@ const styles = StyleSheet.create({
     itemText :{
         color: "white",
         fontWeight: "bold",
-        fontFamily: "Optima",
-        alignSelf: "center",       
+        fontFamily: "Optima", 
+        width: windowWidth*0.75 
     },
     itemContainer: {
         backgroundColor: '#00B4D8',
-        width: windowWidth*0.8,
+        width: windowWidth*0.85,
         height: windowHeight*0.07,
         marginVertical: 8,
         borderRadius: 50,
         alignSelf: "center",
-        justifyContent: "center"
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexDirection: "row",
+        paddingHorizontal: 15
     },
     listContainer :{
        flex: 1
@@ -121,5 +130,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
+        },
+
+    titleContainer :{
+        paddingTop: 5,
+        marginBottom: 10,
+        alignSelf: "center",
+        width: windowWidth *0.3,
+        borderRadius: 12,
+        borderWidth: 1,
+        backgroundColor: "#00B4D8"
         }
 })
