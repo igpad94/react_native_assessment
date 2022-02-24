@@ -1,6 +1,6 @@
 # Introduction
 
-QR Data Storage - this a small app created using react-native-expo that reads QR Codes and lists their data.
+QR Data Storage - this is a small app created using react-native-expo that reads QR Codes and lists their data.
 
 ## Installation
 
