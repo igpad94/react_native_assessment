@@ -39,13 +39,6 @@ export default function ReadQr() {
     setCamera(false);
   };
 
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission...</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -69,7 +62,9 @@ export default function ReadQr() {
 
             <View>
               <View style={styles.codeScanner} />
-              <Button title="Tap to start Scanning" onPress={() => setCamera(true)} />
+              {hasPermission === false || null
+                ? <Text style={styles.warningText}> Access to the camera wasn´t granted </Text>
+                : <Button title="Tap to start Scanning" onPress={() => setCamera(true)} />}
             </View>
           )}
           <Text style={{ fontFamily: 'Optima', color: 'grey', fontSize: 16 }}>
@@ -113,6 +108,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     backgroundColor: '#00B4D8',
+  },
+  warningText: {
+    color: 'red',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    marginVertical: 8,
+    fontFamily: 'Optima',
+    fontSize: 16,
   },
 
 });
